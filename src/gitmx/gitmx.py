@@ -1,4 +1,5 @@
 import argparse
+from typing import Text
 
 def test():
     parser = argparse.ArgumentParser(prog="gitmx", description="Git mixer utility")
@@ -22,8 +23,15 @@ def test3():
         nargs="*",
         help="Additional arguments",
     )
-
     parsed = parser.parse_args()
 
     print(f"Main argument: {parsed.command}")
     print(f"Extra arguments: {parsed.arg}")
+
+def gitx_eval(cmd: Text, args):
+    if cmd == 'config':
+        print('Config placeholder')
+    elif cmd == 'add':
+        print('add placeholder')
+    elif cmd == 'commit':
+        print('commit placehold')
