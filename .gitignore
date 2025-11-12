@@ -5,3 +5,4 @@ accounts.json
 .env
 gitmx.egg-info/
 dist/
+src/gitmx/__pycache__/*
