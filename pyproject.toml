@@ -1,4 +1,4 @@
-[gitmxr]
+[project]
 name = "gitmx"
 version = "0.0.1"
 dependencies = [
@@ -9,3 +9,7 @@ dependencies = [
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+
+
+[project.scripts]
+gitmx = "gitmx.main:main_entry"

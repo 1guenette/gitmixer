@@ -1,3 +1,2 @@
-[build-system]
-requires = ["setuptools >= 77.0.3"]
-build-backend = "setuptools.build_meta"
+def test(self):
+    print('hello world')
