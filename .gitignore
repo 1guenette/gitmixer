@@ -3,3 +3,5 @@
 .venv
 accounts.json
 .env
+gitmx.egg-info/
+dist/
