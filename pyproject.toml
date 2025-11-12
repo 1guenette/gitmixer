@@ -11,5 +11,3 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 
-[project.scripts]
-gitmx = "gitmx.main:main_entry"

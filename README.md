@@ -13,3 +13,13 @@ An open-source terminal library for anonymizing contributions to programming pro
     ```
     $ source .venv/bin/activate
     ```
+
+
+## Update Package
+
+1. ```python3 -m pip install --upgrade build```
+
+
+## Run locally
+
+1. pip install -e .
