@@ -6,7 +6,7 @@ An open-source terminal library for anonymizing contributions to programming pro
 1. Use python's venv module 
     - ([pipenv](https://pipenv.pypa.io/en/latest/) is a great alternative)
     ```
-    $ python -m venv <dependency directory>
+    $ python -m venv .venv
     ```
     - by default ".venv" is used as the <dependency directory> and is utilized in the project's `.gitignore`
 2. Activate the virtual environment in your shell

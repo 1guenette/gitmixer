@@ -12,4 +12,4 @@ build-backend = "setuptools.build_meta"
 
 
 [project.scripts]
-gitmx = "gitmx.gitmx:test3"
+gitmx = "gitmx.gitmx:test"
