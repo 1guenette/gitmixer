@@ -22,4 +22,6 @@ An open-source terminal library for anonymizing contributions to programming pro
 
 ## Run locally
 
-1. pip install -e .
+1. ```python -m build```
+2. ```pip install -e .```
+3. ```gitmx```
