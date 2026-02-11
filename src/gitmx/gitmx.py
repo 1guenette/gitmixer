@@ -1,22 +1,6 @@
 import argparse
 from typing import Text
 import subprocess
-import os
-
-def test():
-    parser = argparse.ArgumentParser(prog="gitmx", description="Git mixer utility")
-    parser.add_argument("--foo", help="Example argument")
-    parser.add_argument("--bar", help="Another example")
-    args = parser.parse_args()
-    print('hello world')
-
-def gitx_eval(cmd: Text, args):
-    if cmd == 'config':
-        print('Config placeholder')
-    elif cmd == 'add':
-        print('add placeholder')
-    elif cmd == 'commit':
-        print('commit placehold')
 
 def main():
     parser = argparse.ArgumentParser(prog="gitmx", description="Git mixer utility")
@@ -41,5 +25,6 @@ def main():
     # print(f"******Main argument: {parsed.command}")
 
     print("*******")
+    print(parser)
     print(arg_string)
-    os.system("git " + arg_string)
+    subprocess.run(["git"] + parsed_args.arg)
