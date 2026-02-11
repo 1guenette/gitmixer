@@ -3,6 +3,7 @@
 .venv
 accounts.json
 .env
-gitmx.egg-info/
+gix.egg-info/
 dist/
-src/gitmx/__pycache__/*
+src/gix/__pycache__/*
+src/gix.egg-info/*

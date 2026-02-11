@@ -1,5 +1,5 @@
 [project]
-name = "gitmx"
+name = "gix"
 version = "0.0.1"
 dependencies = [
     "requests",
@@ -12,4 +12,4 @@ build-backend = "setuptools.build_meta"
 
 
 [project.scripts]
-gitmx = "gitmx.gitmx:main"
+gix = "gix.gix:main"

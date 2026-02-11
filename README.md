@@ -24,4 +24,4 @@ An open-source terminal library for anonymizing contributions to programming pro
 
 1. ```python -m build```
 2. ```pip install -e .```
-3. ```gitmx```
+3. ```gix```

@@ -1,0 +1,2 @@
+[console_scripts]
+gitmx = gitmx.main:main_entry

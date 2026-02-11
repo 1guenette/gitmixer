@@ -3,7 +3,7 @@ from typing import Text
 import subprocess
 
 def main():
-    parser = argparse.ArgumentParser(prog="gitmx", description="Git mixer utility")
+    parser = argparse.ArgumentParser(prog="gix", description="Git mixer utility")
 
     # Require at least one positional argument
     # parser.add_argument(

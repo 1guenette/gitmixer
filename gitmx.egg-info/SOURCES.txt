@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+gitmx/__init__.py
+gitmx/main.py
+gitmx.egg-info/PKG-INFO
+gitmx.egg-info/SOURCES.txt
+gitmx.egg-info/dependency_links.txt
+gitmx.egg-info/entry_points.txt
+gitmx.egg-info/requires.txt
+gitmx.egg-info/top_level.txt
