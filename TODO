@@ -1,8 +1,10 @@
 Local setup
 - Configure random account login
 - Add ananomous user capability?
+- remove author name
 - publish to pipenv
 
 Remote setup:
 - Accounts
 - Remote user mix
+- Remote password maintanance
