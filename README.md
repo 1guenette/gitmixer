@@ -20,7 +20,7 @@ An open-source terminal library for anonymizing contributions to programming pro
 1. ```python3 -m pip install --upgrade build```
 
 
-## Run locally
+## Build & Run locally
 
 1. ```python -m build```
 2. ```pip install -e .```
