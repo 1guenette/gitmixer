@@ -1,6 +1,9 @@
 import argparse
 from typing import Text
 import subprocess
+from github import Github
+from github import Auth
+
 
 def main():
     parser = argparse.ArgumentParser(prog="gix", description="Git mixer utility")
@@ -22,8 +25,10 @@ def main():
     arg_string = " ".join(parsed_args.arg)
 
 
-    # print(f"******Main argument: {parsed.command}")
+    print(f"******Main argument: {parsed_args}")
+    
 
+        
     print("*******")
     print(parser)
     print(arg_string)
