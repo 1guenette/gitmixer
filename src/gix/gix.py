@@ -3,6 +3,7 @@ from typing import Text
 import subprocess
 from github import Github, Auth
 import os
+from .gix_cli.cmd_gix import GixCMD
 
 
 def main():
@@ -25,9 +26,18 @@ def main():
 
 
     print(f"******Main argument: {parsed_args}")
-    print(os.environ.get('ACCOUNT_TOKEN'))
+    process(parsed_args.arg)
     # for repo in g.get_user().get_repos():
     #     print(repo.name)
-    
 
-    subprocess.run(["git"] + parsed_args.arg)
+def process(cmd_list:list[str]):
+    git_cmd = cmd_list[0]
+    if git_cmd == 'commit':
+        print("========PROCESSING")
+        print(cmd_list)
+        #subprocess.run(["git"] + cmd_list)
+        subprocess.run( ['git', 'commit', '--amend', "--author=\"gix <gix@gix.com>\"", "--no-edit"])
+        subprocess.run(['git', 'commit', '--amend', '--author=gix <gix@gix.com>', '--no-edit'])
+
+    else:
+        subprocess.run(["git"] + cmd_list)

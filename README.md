@@ -41,11 +41,8 @@ Developing software is not a crime.
 ## Development Setup
 1. add account tokens to ```account_tokens.json```
 
-
-
 $ git config user.name "John Doe"
 $ git config user.email "john@doe.org"
-
 
 git config --global user.name "John Doe"
 git config --global user.email "john@doe.org"
