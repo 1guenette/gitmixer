@@ -48,5 +48,5 @@ git config --global user.name "John Doe"
 git config --global user.email "john@doe.org"
 
 
-git commit --amend --author="John Doe <john@doe.org>"
+git commit --amend --author="John Doe <john@doe.org>" --no-edit
 git rebase --continue
