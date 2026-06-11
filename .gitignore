@@ -7,3 +7,4 @@ gix.egg-info/
 dist/
 src/gix/__pycache__/*
 src/gix.egg-info/*
+accounts_local.json
