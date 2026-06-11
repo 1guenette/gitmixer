@@ -1,5 +1,7 @@
 Local setup
+- Configure random account registration
 - Configure random account login
+
 - Add ananomous user capability?
 - remove author name
 - publish to pipenv
