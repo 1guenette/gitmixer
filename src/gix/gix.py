@@ -36,7 +36,7 @@ def process(cmd_list:list[str]):
     git_cmd = cmd_list[0]
     if git_cmd == 'commit':
         #TODO
-        #subprocess.run(["git"] + cmd_list)
+        subprocess.run(["git"] + cmd_list)
         #subprocess.run( ['git', 'commit', '--amend', "--author=\"gix <gix@gix.com>\"", "--no-edit"])
         subprocess.run(['git', 'commit', '--amend', '--author=gix <gix@gix.com>', '--no-edit'])
     elif git_cmd == 'test':
