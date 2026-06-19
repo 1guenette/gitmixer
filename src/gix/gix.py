@@ -41,7 +41,7 @@ def process(cmd_list:list[str]):
         subprocess.run(['git', 'config', '--global', 'user.email', "gix@gix.com"])
         subprocess.run(['git', 'commit', '--amend', '--author=gix <gix@gix.com>', '--no-edit'])
         subprocess.run(['git', 'config', '--global', 'user.name', '"' + os.environ.get('OG_USERNAME') + '"' ])
-        subprocess.run(['git', 'config', '--global', 'user.email' '"' + os.environ.get('OG_EMAIL') + '"'])
+        subprocess.run(['git', 'config', '--global', 'user.email', '"' + os.environ.get('OG_EMAIL') + '"'])
     elif git_cmd == 'test':
         print("TEST")
     elif git_cmd == 'init':
@@ -53,7 +53,7 @@ def process(cmd_list:list[str]):
     elif git_cmd == 'reset_gix':
         #TODO
         subprocess.run(['git', 'config', '--global', 'user.name', '"' + os.environ.get('OG_USERNAME') + '"' ])
-        subprocess.run(['git', 'config', '--global', 'user.email' '"' + os.environ.get('OG_EMAIL') + '"'])
+        subprocess.run(['git', 'config', '--global', 'user.email', '"' + os.environ.get('OG_EMAIL') + '"'])
         subprocess.run(["git"] + cmd_list)
     elif git_cmd == 'init':
         #TODO
