@@ -2,9 +2,11 @@ import argparse
 from typing import Text
 import subprocess
 from github import Github, Auth, Repository
-from git import Repo
+# from git import Repo
 import os
 from .gix_cli.cmd_gix import GixCMD
+import random
+import string
 import random
 
 def main():
@@ -12,17 +14,17 @@ def main():
 
 
     ##Connect to github
-    auth = Auth.Token(os.environ.get('ACCOUNT_TOKEN'))
-    g = Github(auth=auth)
-    user = g.get_user().login
-
-    # Forward all commands for git
+    # auth = Auth.Token(os.environ.get('ACCOUNT_TOKEN'))
+    # g = Github(auth=auth)
+    # user = g.get_user().login
+    # # Forward all commands for git
+    
+    
     parser.add_argument(
         "arg",
         nargs=argparse.REMAINDER,
         help="Additional arguments",
     )
-
     parsed_args = parser.parse_args()
 
 
@@ -31,17 +33,22 @@ def main():
     
     # for repo in g.get_user().get_repos():
     #     print(repo.name)
+def random_id_generator():
+    ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(6))
 
 def process(cmd_list:list[str]):
     git_cmd = cmd_list[0]
     if git_cmd == 'commit':
         #TODO
+        account_id = random_id_generator()
+        account_email = f'{account_id}@{account_id}.com'
+
         subprocess.run(["git"] + cmd_list)
-        subprocess.run(['git', 'config', '--global', 'user.name', "gix"])
-        subprocess.run(['git', 'config', '--global', 'user.email', "gix@gix.com"])
-        subprocess.run(['git', 'commit', '--amend', '--author=gix <gix@gix.com>', '--no-edit'])
-        subprocess.run(['git', 'config', '--global', 'user.name', '"' + os.environ.get('OG_USERNAME') + '"' ])
-        subprocess.run(['git', 'config', '--global', 'user.email', '"' + os.environ.get('OG_EMAIL') + '"'])
+        subprocess.run(['git', 'config', '--global', 'user.name', account_id])
+        subprocess.run(['git', 'config', '--global', 'user.email', account_email])
+        subprocess.run(['git', 'commit', '--amend', f'--author=gix <{account_email}>', '--no-edit'])
+        # subprocess.run(['git', 'config', '--global', 'user.name', '"' + os.environ.get('OG_USERNAME') + '"' ])
+        # subprocess.run(['git', 'config', '--global', 'user.email', '"' + os.environ.get('OG_EMAIL') + '"'])
     elif git_cmd == 'test':
         print("TEST")
     elif git_cmd == 'init':
