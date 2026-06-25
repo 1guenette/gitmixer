@@ -34,18 +34,22 @@ def main():
     # for repo in g.get_user().get_repos():
     #     print(repo.name)
 def random_id_generator():
-    ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(6))
+    return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(6))
 
 def process(cmd_list:list[str]):
     git_cmd = cmd_list[0]
+    account_id = random_id_generator()
+    account_email = f'{account_id}@{account_id}.com'
+    print(account_id)
+    print(account_email)
     if git_cmd == 'commit':
         #TODO
         account_id = random_id_generator()
         account_email = f'{account_id}@{account_id}.com'
 
         subprocess.run(["git"] + cmd_list)
-        subprocess.run(['git', 'config', '--global', 'user.name', f'{account_id}'])
-        subprocess.run(['git', 'config', '--global', 'user.email',f'{account_email}'])
+        subprocess.run(['git', 'config', '--global', 'user.name', account_id])
+        subprocess.run(['git', 'config', '--global', 'user.email', account_email])
         subprocess.run(['git', 'commit', '--amend', f'--author=gix <{account_email}>', '--no-edit'])
         # subprocess.run(['git', 'config', '--global', 'user.name', '"' + os.environ.get('OG_USERNAME') + '"' ])
         # subprocess.run(['git', 'config', '--global', 'user.email', '"' + os.environ.get('OG_EMAIL') + '"'])
