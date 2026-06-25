@@ -51,3 +51,25 @@ git config --global user.email "john@doe.org"
 git commit --amend --author="John Doe <john@doe.org>" --no-edit
 git rebase --continue
 
+
+
+Dev notes
+——————
+Steps to gen key: 
+    Windows: ssh-keygen -t ed25519 -f "$env:USERPROFILE\.ssh\id_[PROFILENAME]_ed25519" -N '""'
+    Mac: ssh-keygen -t ed25519 -C "gix_user@proton.me" -f ~/.ssh/id_[PROFILENAME] -N ""
+
+    ssh-add ~/.ssh/[PROFILENAME]_id_gix_user
+    gh ssh-key add ~/.ssh/id_[PROFILENAME]_ed25519.pub --title "My Laptop"
+
+    
+    
+    git clone git@github.com:1guenette/gitmixer.git
+
+    
+    verify access: ssh -T git@github.com
+
+—————————
+
+subprocess.run( ['git', 'commit', '--amend', "--author=\"gix <gix@gix.com>\"", "--no-edit"])
+        subprocess.run(['git', 'commit', '--amend', '--author=gix <gix@gix.com>', '--no-edit'])
