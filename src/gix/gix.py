@@ -44,8 +44,8 @@ def process(cmd_list:list[str]):
         account_email = f'{account_id}@{account_id}.com'
 
         subprocess.run(["git"] + cmd_list)
-        subprocess.run(['git', 'config', '--global', 'user.name', account_id])
-        subprocess.run(['git', 'config', '--global', 'user.email', account_email])
+        subprocess.run(['git', 'config', '--global', 'user.name', f'{account_id}'])
+        subprocess.run(['git', 'config', '--global', 'user.email',f'{account_email}'])
         subprocess.run(['git', 'commit', '--amend', f'--author=gix <{account_email}>', '--no-edit'])
         # subprocess.run(['git', 'config', '--global', 'user.name', '"' + os.environ.get('OG_USERNAME') + '"' ])
         # subprocess.run(['git', 'config', '--global', 'user.email', '"' + os.environ.get('OG_EMAIL') + '"'])
