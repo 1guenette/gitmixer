@@ -8,4 +8,4 @@ dist/
 src/gix/__pycache__/*
 src/gix.egg-info/*
 accounts_local.json
-src/gix/gix_cli/__pycache__/cmd_gix.cpython-314.pyc
+src/gix/gix_cli/__pycache__/
