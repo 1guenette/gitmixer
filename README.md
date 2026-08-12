@@ -136,8 +136,6 @@ def upload_ssh_key_api(token, key_path, title):
 GITHUB_TOKEN = "your_personal_access_token"
 upload_ssh_key_api(GITHUB_TOKEN, "~/.ssh/id_ed25519.pub", "API Uploaded Key")
 
-
-
 ### Environment variables
 _________________________________________________________________________________________________________________________
 | Variable                                  | Description                                                               |
