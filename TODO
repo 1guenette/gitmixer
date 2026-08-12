@@ -1,6 +1,16 @@
 
 Local setup
 
+
+
+steps for each account
+    - (BLOCKER) initialize first github account
+    - ssh-keygen
+    - ssh-add
+    - 
+    - gh login (1-cmd)
+
+
 - UNFUCK git accounts when committing
 - Configure ssh keygen init function with account list with github
 - Create github cli auth function
