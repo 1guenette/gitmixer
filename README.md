@@ -83,8 +83,6 @@ Steps to gen key:
 
     ssh-add ~/.ssh/id_[PROFILENAME]
     gh ssh-key add ~/.ssh/id_[PROFILENAME]_ed25519.pub --title "[PROFILE_NAME]"
-
-    
     
     git clone git@github.com:1guenette/gitmixer.git
 
