@@ -1,5 +1,13 @@
 Local setup
+- Add PATs to github accounts
+- Configure ssh keygen init function with account list with github
+- Create github cli auth function
+
 - Configure account collaboration and registration
+
+- Configure github user push randomizer
+- Make local git email/user randomizer conditional
+
 - Configure random account login
 - Add ananomous user capability?
 - remove author name
