@@ -1,5 +1,4 @@
 Local setup
-- Add PATs to github accounts
 - Configure ssh keygen init function with account list with github
 - Create github cli auth function
 
