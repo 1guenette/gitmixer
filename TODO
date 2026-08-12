@@ -1,4 +1,5 @@
 Local setup
+- UNFUCK git accounts when committing
 - Configure ssh keygen init function with account list with github
 - Create github cli auth function
 
