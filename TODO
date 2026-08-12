@@ -11,7 +11,6 @@ steps for each account
     - gh login (1-cmd)
 
 
-- UNFUCK git accounts when committing
 - Configure ssh keygen init function with account list with github
 - Create github cli auth function
 
