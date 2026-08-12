@@ -25,6 +25,30 @@ Developing software is not a crime.
     $ source .venv/bin/activate
     ```
 
+## Local Requirements
+1. Emails accounts are required with a corresponding email. Account pool should be a json file with a list with the following template structure:
+```
+    [
+        {
+            "username": "jhimenez",
+            "github_username": "jhimenez1", //optionally added if username/email is not the same as github username
+            "email": "jhimenez@proton.me",
+            "pw": "comebackwithawarrant#",
+            "git_user": true,
+            "pat" //Required for all accounts
+        }
+    ]
+```
+All github accounts must hace a PAT created
+2. Point to account pool
+```
+    gix config --account_pool=path/to/account
+```
+
+3. Navigate to project and initialize gix to link all accounts to project
+```
+    gix init
+```
 
 ## Update Package
 
@@ -57,10 +81,10 @@ Dev notes
 ——————
 Steps to gen key: 
     Windows: ssh-keygen -t ed25519 -f "$env:USERPROFILE\.ssh\id_[PROFILENAME]_ed25519" -N '""'
-    Mac: ssh-keygen -t ed25519 -C "gix_user@proton.me" -f ~/.ssh/id_[PROFILENAME] -N ""
+    Mac: ssh-keygen -t ed25519 -C "[PROFILENAME]@proton.me" -f ~/.ssh/id_[PROFILENAME] -N ""
 
-    ssh-add ~/.ssh/[PROFILENAME]_id_gix_user
-    gh ssh-key add ~/.ssh/id_[PROFILENAME]_ed25519.pub --title "My Laptop"
+    ssh-add ~/.ssh/id_[PROFILENAME]
+    gh ssh-key add ~/.ssh/id_[PROFILENAME]_ed25519.pub --title "[PROFILE_NAME]"
 
     
     
@@ -73,3 +97,53 @@ Steps to gen key:
 
 subprocess.run( ['git', 'commit', '--amend', "--author=\"gix <gix@gix.com>\"", "--no-edit"])
         subprocess.run(['git', 'commit', '--amend', '--author=gix <gix@gix.com>', '--no-edit'])
+
+
+gh auth login
+gh ssh-key add ~/.ssh/id_[PROFILENAME]_ed25519.pub --title "My Laptop"
+
+
+//Test ex
+import os
+import requests
+
+def upload_ssh_key_api(token, key_path, title):
+    # Expand user paths like ~/.ssh/
+    expanded_path = os.path.expanduser(key_path)
+    
+    with open(expanded_path, "r") as f:
+        public_key_content = f.read().strip()
+
+    url = "https://api.github.com/user/keys"
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28"
+    }
+    payload = {
+        "title": title,
+        "key": public_key_content
+    }
+
+    response = requests.post(url, json=payload, headers=headers)
+
+    if response.status_code == 201:
+        print(f"Successfully added key: {response.json().get('title')}")
+    else:
+        print(f"Failed to add key: {response.status_code} - {response.text}")
+
+# Example usage (Requires a GitHub Personal Access Token with 'admin:public_key' scope)
+GITHUB_TOKEN = "your_personal_access_token"
+upload_ssh_key_api(GITHUB_TOKEN, "~/.ssh/id_ed25519.pub", "API Uploaded Key")
+
+
+
+### Environment variables
+_________________________________________________________________________________________________________________________
+| Variable                                  | Description                                                               |
+-------------------------------------------------------------------------------------------------------------------------
+| PRIMARY_USER                              |  The primary user account                                                 |   
+| MACHINE                                   | Computer type (Mac Linux or PC)                                           |
+| SQL_DB_NAME                               | The name of the master SQL                                                |
+| LOCAL_ANON                                | Boolean on whether local username and email are wiped or use account pool |
+| MODE                                      | Remote or local                                                           |
