@@ -10,3 +10,5 @@ src/gix.egg-info/*
 accounts_local.json
 src/gix/gix_cli/__pycache__/
 src/gix/gix_cli/__pycache__/cmd_gix.cpython-314.pyc
+account_instruction_set
+src/gix/gix_cli/__pycache__/*
