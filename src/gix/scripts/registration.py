@@ -22,16 +22,3 @@ def set_account(origin: str):
     cmd = ['git','remote', 'set-url', 'origin', f'https://{accounts[loc]['username']}:{accounts[loc]['pat']}@{origin}']
     subprocess.run(cmd)
     return accounts[loc]
-
-
-
-
-
-# IMPORTANT SWITCH accounts
-# git remote set-url origin https://ACCOUNT_1:TOKEN@github.com/1guenette/gitmixer.git
-# push
-#  git remote set-url origin https://ACCOUNT_1:TOKEN@github.com/1guenette/gitmixer.git
-#
-
-# x = set_account(data, 'github.com/1guenette/gitmixer.git')
-# print(x)
