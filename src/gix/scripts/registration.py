@@ -4,6 +4,8 @@ import pandas as pd
 from pathlib import Path
 import subprocess
 
+accounts = json.loads(Path('/Users/sguenette/research/gitmixer/accounts_local.json').read_text(encoding="utf-8"))
+
 
 def register_accounts(accounts: list):
     size = len(accounts)
@@ -14,7 +16,7 @@ def register_accounts(accounts: list):
         #subprocess.run(['ssh-keygen', '-t', 'ed25519', '-C', account.get('email'), '-f',  '~/.ssh/id_' + account['username'], '-N', '""' ])
         ##TODO: use github library to register accounts and invite accounts
 
-def set_account(accounts: list, origin: str):
+def set_account(origin: str):
     #loc = randint(0,len(accounts)-1) #TODO: Re-enable when registration is resolved
     loc = randint(0,1)
     cmd = ['git','remote', 'set-url', 'origin', f'https://{accounts[loc]['username']}:{accounts[loc]['pat']}@{origin}']
@@ -23,7 +25,6 @@ def set_account(accounts: list, origin: str):
 
 
 
-data = json.loads(Path('/Users/sguenette/research/gitmixer/accounts_local.json').read_text(encoding="utf-8"))
 
 
 # IMPORTANT SWITCH accounts
@@ -32,5 +33,5 @@ data = json.loads(Path('/Users/sguenette/research/gitmixer/accounts_local.json')
 #  git remote set-url origin https://ACCOUNT_1:TOKEN@github.com/1guenette/gitmixer.git
 #
 
-x = set_account(data, 'github.com/1guenette/gitmixer.git')
-print(x)
+# x = set_account(data, 'github.com/1guenette/gitmixer.git')
+# print(x)

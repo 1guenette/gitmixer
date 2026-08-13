@@ -8,6 +8,7 @@ from .gix_cli.cmd_gix import GixCMD
 import random
 import string
 import random
+from .scripts import registration
 
 def main():
     parser = argparse.ArgumentParser(prog="gix", description="Git mixer utility")
@@ -46,7 +47,7 @@ def process(cmd_list:list[str]):
         #TODO
         account_id = random_id_generator()
         account_email = f'{account_id}@{account_id}.com'
-
+        registration.set_account('github.com/1guenette/gitmixer.git')
         subprocess.run(["git"] + cmd_list)
         subprocess.run(['git', 'config', '--global', 'user.name', account_id])
         subprocess.run(['git', 'config', '--global', 'user.email', account_email])
