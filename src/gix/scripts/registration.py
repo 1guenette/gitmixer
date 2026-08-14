@@ -35,7 +35,7 @@ def register_accounts(accounts: list, admin: bool = False ):
 
 def set_account(origin: str):
     #loc = randint(0,len(accounts)-1) #TODO: Re-enable when registration is resolved
-    loc = 2
+    loc = randint(0,3)
     cmd = ['git','remote', 'set-url', 'origin', f'https://{accounts[loc]['username']}:{accounts[loc]['pat']}@{origin}']
     subprocess.run(cmd)
     return accounts[loc]
