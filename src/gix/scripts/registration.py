@@ -6,20 +6,36 @@ from pathlib import Path
 import subprocess
 
 accounts = json.loads(Path('/Users/sguenette/research/gitmixer/accounts_local.json').read_text(encoding="utf-8"))
-account_owner = os.environ.get('PRIMARY_ACCOUNT') 
+owner_uname = os.environ.get('PRIMARY_ACCOUNT') or accounts[0]['username']
+ACCOUNT_MASTER = list(filter(lambda x: x['username'] == owner_uname,  accounts))[0]
+print(ACCOUNT_MASTER)
+
+
+def init():
+    ['git','remote', 'set-url', 'origin', f'https://{accounts[loc]['username']}:{accounts[loc]['pat']}@{origin}']
 
 def register_accounts(accounts: list, admin: bool = False ):
-    size = len(accounts)
-    for account in accounts:
+    register_list = filter(lambda x: x['username'] != ACCOUNT_MASTER['username'], accounts)
+    primary_login_cmd = ['echo', f'{ACCOUNT_MASTER['pat']}', '|',  'gh', 'auth', 'login', '--with-token']
+    subprocess.run(primary_login_cmd)
+    
+    for account in register_list:
         print("-----Registering {}", account)
-        # ssh-keygen -t ed25519 -C "[PROFILENAME]@proton.me" -f ~/.ssh/id_[PROFILENAME] -N ""
-        # account.
-        #subprocess.run(['ssh-keygen', '-t', 'ed25519', '-C', account.get('email'), '-f',  '~/.ssh/id_' + account['username'], '-N', '""' ])
+        cmd = ['gh', 'api', '--method', 'PUT', '-H', '"Accept: application/vnd.github+json"', f'/repos/1guenette/gitmixer/collaborators/{account['username']}', '-f' 'permission=admin']
+        
         ##TODO: use github library to register accounts and invite accounts
+    for accounts in register_list:
+        login_cmd = ['echo', f'{account['pat']}', '|',  'gh', 'auth', 'login', '--with-token']
+        subprocess.run(login_cmd)
+        #gh api user/repository_invitations
+        # get id from
+        #
+        
+
 
 def set_account(origin: str):
     #loc = randint(0,len(accounts)-1) #TODO: Re-enable when registration is resolved
-    loc = randint(0,1)
+    loc = 2
     cmd = ['git','remote', 'set-url', 'origin', f'https://{accounts[loc]['username']}:{accounts[loc]['pat']}@{origin}']
     subprocess.run(cmd)
     return accounts[loc]

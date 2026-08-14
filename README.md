@@ -140,3 +140,10 @@ ________________________________________________________________________________
 | SQL_DB_NAME                               | The name of the master SQL                                                |
 | LOCAL_ANON                                | Boolean on whether local username and email are wiped or use account pool |
 | MODE                                      | Remote or local                                                           |
+
+
+
+
+# ssh-keygen -t ed25519 -C "[PROFILENAME]@proton.me" -f ~/.ssh/id_[PROFILENAME] -N ""
+        # account.
+        #subprocess.run(['ssh-keygen', '-t', 'ed25519', '-C', account.get('email'), '-f',  '~/.ssh/id_' + account['username'], '-N', '""' ])
