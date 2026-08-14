@@ -8,28 +8,34 @@ import subprocess
 accounts = json.loads(Path('/Users/sguenette/research/gitmixer/accounts_local.json').read_text(encoding="utf-8"))
 owner_uname = os.environ.get('PRIMARY_ACCOUNT') or accounts[0]['username']
 ACCOUNT_MASTER = list(filter(lambda x: x['username'] == owner_uname,  accounts))[0]
-print(ACCOUNT_MASTER)
 
 
-def init():
+def init_info():
     ['git','remote', 'set-url', 'origin', f'https://{accounts[loc]['username']}:{accounts[loc]['pat']}@{origin}']
 
 def register_accounts(accounts: list, admin: bool = False ):
-    register_list = filter(lambda x: x['username'] != ACCOUNT_MASTER['username'], accounts)
+    register_list = list(filter(lambda x: x['username'] != ACCOUNT_MASTER['username'], accounts))
     primary_login_cmd = ['echo', f'{ACCOUNT_MASTER['pat']}', '|',  'gh', 'auth', 'login', '--with-token']
     subprocess.run(primary_login_cmd)
     
     for account in register_list:
         print("-----Registering {}", account)
-        cmd = ['gh', 'api', '--method', 'PUT', '-H', '"Accept: application/vnd.github+json"', f'/repos/1guenette/gitmixer/collaborators/{account['username']}', '-f' 'permission=admin']
+        cmd = ['gh', 'api', '--method', 'PUT', '-H', 'Accept: application/vnd.github+json', f'/repos/1guenette/gitmixer/collaborators/{account['username']}', '-f' 'permission=admin']
+        try:
+            subprocess.run(cmd, text=True)
+        except Exception as e:
+            print(f'ERR: {account['username']} {e}')
         
-        ##TODO: use github library to register accounts and invite accounts
-    for accounts in register_list:
-        login_cmd = ['echo', f'{account['pat']}', '|',  'gh', 'auth', 'login', '--with-token']
-        subprocess.run(login_cmd)
-        #gh api user/repository_invitations
-        # get id from
-        #
+    for account in register_list:
+        result = subprocess.run(
+            ['gh', 'auth', 'login', '--with-token'],
+            input=account['pat'],
+            text=True,
+            capture_output=True,
+        )
+        if result.returncode != 0:
+            print(f"Failed to auth {account.get('name', '?')}: {result.stderr}")
+        #TODO: Accept project
         
 
 
