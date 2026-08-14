@@ -4,10 +4,8 @@ Local setup
 
 
 steps for each account
-    - (BLOCKER) initialize first github account
     - ssh-keygen
-    - ssh-add
-    - 
+    - ssh-add 
     - gh login (1-cmd)
 
 
@@ -16,7 +14,6 @@ steps for each account
 
 - Configure account collaboration and registration
 
-- Configure github user push randomizer
 - Make local git email/user randomizer conditional
 
 - Configure random account login
