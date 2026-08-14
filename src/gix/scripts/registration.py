@@ -1,3 +1,4 @@
+import os
 from random import randint
 import json
 import pandas as pd
@@ -5,9 +6,9 @@ from pathlib import Path
 import subprocess
 
 accounts = json.loads(Path('/Users/sguenette/research/gitmixer/accounts_local.json').read_text(encoding="utf-8"))
+account_owner = os.environ.get('PRIMARY_ACCOUNT') 
 
-
-def register_accounts(accounts: list):
+def register_accounts(accounts: list, admin: bool = False ):
     size = len(accounts)
     for account in accounts:
         print("-----Registering {}", account)
