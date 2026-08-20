@@ -1,8 +1,6 @@
 
 Local setup
 
-
-
 steps for each account
     - ssh-keygen
     - ssh-add 
@@ -25,3 +23,4 @@ Remote setup:
 - Accounts
 - Remote user mix
 - Remote password maintanance
+
