@@ -1,0 +1,15 @@
+LICENSE
+README.md
+pyproject.toml
+src/gitty_mix.egg-info/PKG-INFO
+src/gitty_mix.egg-info/SOURCES.txt
+src/gitty_mix.egg-info/dependency_links.txt
+src/gitty_mix.egg-info/entry_points.txt
+src/gitty_mix.egg-info/requires.txt
+src/gitty_mix.egg-info/top_level.txt
+src/gix/__init__.py
+src/gix/__main__.py
+src/gix/gix.py
+src/gix/gix_cli/__init__.py
+src/gix/gix_cli/cmd_gix.py
+src/gix/scripts/registration.py

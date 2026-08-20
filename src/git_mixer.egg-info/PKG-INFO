@@ -1,0 +1,8 @@
+Metadata-Version: 2.4
+Name: git_mixer
+Version: 0.0.1
+License-File: LICENSE
+Requires-Dist: requests
+Requires-Dist: importlib-metadata; python_version < "3.10"
+Requires-Dist: PyGithub
+Dynamic: license-file

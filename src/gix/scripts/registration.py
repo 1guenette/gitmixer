@@ -15,11 +15,16 @@ def init_info():
 
 def register_accounts(accounts: list, admin: bool = False ):
     register_list = list(filter(lambda x: x['username'] != ACCOUNT_MASTER['username'], accounts))
+
+    #Login with primary account
     primary_login_cmd = ['echo', f'{ACCOUNT_MASTER['pat']}', '|',  'gh', 'auth', 'login', '--with-token']
     subprocess.run(primary_login_cmd)
     
+    #Traverse through secondary accounts and invite secoondry users to project
     for account in register_list:
         print("-----Registering {}", account)
+
+        #Invite cmd
         cmd = ['gh', 'api', '--method', 'PUT', '-H', 'Accept: application/vnd.github+json', f'/repos/1guenette/gitmixer/collaborators/{account['username']}', '-f' 'permission=admin']
         try:
             subprocess.run(cmd, text=True)
@@ -27,6 +32,7 @@ def register_accounts(accounts: list, admin: bool = False ):
             print(f'ERR: {account['username']} {e}')
         
     for account in register_list:
+        #Login to secondary account
         result = subprocess.run(
             ['gh', 'auth', 'login', '--with-token'],
             input=account['pat'],
@@ -36,6 +42,7 @@ def register_accounts(accounts: list, admin: bool = False ):
         if result.returncode != 0:
             print(f"Failed to auth {account.get('name', '?')}: {result.stderr}")
         #TODO: Accept project
+        #gh api --method PATCH user/repository_invitations/329215964
         
 
 

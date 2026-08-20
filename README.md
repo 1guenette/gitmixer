@@ -147,3 +147,11 @@ ________________________________________________________________________________
 # ssh-keygen -t ed25519 -C "[PROFILENAME]@proton.me" -f ~/.ssh/id_[PROFILENAME] -N ""
         # account.
         #subprocess.run(['ssh-keygen', '-t', 'ed25519', '-C', account.get('email'), '-f',  '~/.ssh/id_' + account['username'], '-N', '""' ])
+
+
+
+## Uploading new version 
+rm -rf build/ dist/
+python3 -m pip install --upgrade build
+python3 -m build
+twine upload --repository gix dist/* --verbose

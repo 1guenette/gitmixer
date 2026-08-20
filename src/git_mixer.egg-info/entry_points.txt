@@ -1,0 +1,2 @@
+[console_scripts]
+gix = gix.gix:main

@@ -1,11 +1,12 @@
 [project]
-name = "gix"
+name = "gitty_mix"
 version = "0.0.1"
 dependencies = [
     "requests",
     'importlib-metadata; python_version<"3.10"',
     "PyGithub"
 ]
+exclude = ["accounts_local.json"]
 
 [build-system]
 requires = ["setuptools"]

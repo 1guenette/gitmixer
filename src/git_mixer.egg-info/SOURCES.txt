@@ -1,0 +1,15 @@
+LICENSE
+README.md
+pyproject.toml
+src/git_mixer.egg-info/PKG-INFO
+src/git_mixer.egg-info/SOURCES.txt
+src/git_mixer.egg-info/dependency_links.txt
+src/git_mixer.egg-info/entry_points.txt
+src/git_mixer.egg-info/requires.txt
+src/git_mixer.egg-info/top_level.txt
+src/gix/__init__.py
+src/gix/__main__.py
+src/gix/gix.py
+src/gix/gix_cli/__init__.py
+src/gix/gix_cli/cmd_gix.py
+src/gix/scripts/registration.py
