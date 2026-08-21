@@ -72,22 +72,7 @@ def register_accounts(accounts: list, admin: bool = True ):
 
 def set_account(origin: str):
     loc = randint(0,len(accounts)-1) #TODO: Re-enable when registration is resolved
-    #loc = randint(0,3)
     cmd = ['git','remote', 'set-url', 'origin', f'https://{accounts[loc]['username']}:{accounts[loc]['pat']}@{origin}']
     logging.info(f"SETTING ACCOUNT {accounts[loc]['username']}")
     subprocess.run(cmd)
     return accounts[loc]
-
-
-
-# result = subprocess.run(
-#     ['gh', 'api', '--method', 'GET', 'user/repository_invitations'],
-#     text=True,
-#     capture_output=True,
-# )
-
-# print("XXXXXX")
-# register_accounts(accounts)
-
-
-# gh api --method PATCH user/repository_invitations/329215964
