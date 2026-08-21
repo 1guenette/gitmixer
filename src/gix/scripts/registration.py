@@ -68,7 +68,6 @@ def register_accounts(accounts: list, admin: bool = True ):
                         capture_output=True,
                     )
 
-        #gh api --method PATCH user/repository_invitations/329215964
 
 def set_account(origin: str):
     loc = randint(0,len(accounts)-1) #TODO: Re-enable when registration is resolved
