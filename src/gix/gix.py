@@ -13,7 +13,6 @@ from .scripts import registration
 def main():
     parser = argparse.ArgumentParser(prog="gix", description="Git mixer utility")
 
-
     ##Connect to github
     # auth = Auth.Token(os.environ.get('ACCOUNT_TOKEN'))
     # g = Github(auth=auth)

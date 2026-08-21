@@ -23,6 +23,8 @@ def init_info():
 
 def register_accounts(accounts: list, admin: bool = True ):
     register_list = list(filter(lambda x: x['username'] != ACCOUNT_MASTER['username'], accounts))
+    print("HAHAHAHA")
+    print(ACCOUNT_MASTER)
 
     #Login with primary account
     primary_login_cmd = ['echo', f'{ACCOUNT_MASTER['pat']}', '|',  'gh', 'auth', 'login', '--with-token']
@@ -30,15 +32,16 @@ def register_accounts(accounts: list, admin: bool = True ):
     
     #Traverse through secondary accounts and invite secoondry users to project
     for account in register_list:
-        logging.info("-----Registering {}", account)
+        logging.info(f"-----Registering {account['username']}")
 
         #Invite cmd
         cmd = ['gh', 'api', '--method', 'PUT', '-H', 'Accept: application/vnd.github+json', f'/repos/1guenette/gitmixer/collaborators/{account['username']}', '-f' 'permission=admin']
         try:
-            subprocess.run(cmd, text=True)
+            subprocess.run(cmd, text=True, capture_output=False)
         except Exception as e:
             logging.error(f'ERR: {account['username']} {e}')
         
+    subprocess.run(primary_login_cmd)
     for account in register_list:
         #Login to secondary account
         result = subprocess.run(
