@@ -4,16 +4,24 @@ import json
 import pandas as pd
 from pathlib import Path
 import subprocess
+import logging
+# 1. Configure the logging settings
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
+
+# 2. Create the logger instance
+logger = logging.getLogger(__name__)
 
 accounts = json.loads(Path('/Users/sguenette/research/gitmixer/accounts_local.json').read_text(encoding="utf-8"))
 owner_uname = os.environ.get('PRIMARY_ACCOUNT') or accounts[0]['username']
 ACCOUNT_MASTER = list(filter(lambda x: x['username'] == owner_uname,  accounts))[0]
 
-
 def init_info():
     ['git','remote', 'set-url', 'origin', f'https://{accounts[loc]['username']}:{accounts[loc]['pat']}@{origin}']
 
-def register_accounts(accounts: list, admin: bool = False ):
+def register_accounts(accounts: list, admin: bool = True ):
     register_list = list(filter(lambda x: x['username'] != ACCOUNT_MASTER['username'], accounts))
 
     #Login with primary account
@@ -22,14 +30,14 @@ def register_accounts(accounts: list, admin: bool = False ):
     
     #Traverse through secondary accounts and invite secoondry users to project
     for account in register_list:
-        print("-----Registering {}", account)
+        logging.info("-----Registering {}", account)
 
         #Invite cmd
         cmd = ['gh', 'api', '--method', 'PUT', '-H', 'Accept: application/vnd.github+json', f'/repos/1guenette/gitmixer/collaborators/{account['username']}', '-f' 'permission=admin']
         try:
             subprocess.run(cmd, text=True)
         except Exception as e:
-            print(f'ERR: {account['username']} {e}')
+            logging.error(f'ERR: {account['username']} {e}')
         
     for account in register_list:
         #Login to secondary account
@@ -40,15 +48,43 @@ def register_accounts(accounts: list, admin: bool = False ):
             capture_output=True,
         )
         if result.returncode != 0:
-            print(f"Failed to auth {account.get('name', '?')}: {result.stderr}")
+            logging.warning(f"Failed to auth {account.get('name', '?')}: {result.stderr}")
         #TODO: Accept project
-        #gh api --method PATCH user/repository_invitations/329215964
-        
+        result_invite = subprocess.run(
+            ['gh', 'api', '--method', 'GET', 'user/repository_invitations'],
+            text=True,
+            capture_output=True,
+        )
+        ##TODO: implement error handling
+        invites = json.loads(result_invite.stdout)#[0].get('id')
+        if(len(invites) >0):
+            proj_id = invites[0].get('id')
+            result_account = subprocess.run(
+                        ['gh', 'api', '--method', 'PATCH', f'user/repository_invitations/{proj_id}'],
+                        text=True,
+                        capture_output=True,
+                    )
 
+        #gh api --method PATCH user/repository_invitations/329215964
 
 def set_account(origin: str):
-    #loc = randint(0,len(accounts)-1) #TODO: Re-enable when registration is resolved
-    loc = randint(0,3)
+    loc = randint(0,len(accounts)-1) #TODO: Re-enable when registration is resolved
+    #loc = randint(0,3)
     cmd = ['git','remote', 'set-url', 'origin', f'https://{accounts[loc]['username']}:{accounts[loc]['pat']}@{origin}']
+    logging.info(f"SETTING ACCOUNT {accounts[loc]['username']}")
     subprocess.run(cmd)
     return accounts[loc]
+
+
+
+# result = subprocess.run(
+#     ['gh', 'api', '--method', 'GET', 'user/repository_invitations'],
+#     text=True,
+#     capture_output=True,
+# )
+
+# print("XXXXXX")
+# register_accounts(accounts)
+
+
+# gh api --method PATCH user/repository_invitations/329215964
