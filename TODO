@@ -10,8 +10,6 @@ steps for each account
 - Configure ssh keygen init function with account list with github
 - Create github cli auth function
 
-- Configure account collaboration and registration
-
 - Make local git email/user randomizer conditional
 
 - Configure random account login
