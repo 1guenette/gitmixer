@@ -68,9 +68,10 @@ def register_accounts(accounts: list, admin: bool = True ):
                         capture_output=True,
                     )
 
-
 def set_account(origin: str):
+    print("HOHOP")
     loc = randint(0,len(accounts)-1) #TODO: Re-enable when registration is resolved
+    print(len(accounts))
     cmd = ['git','remote', 'set-url', 'origin', f'https://{accounts[loc]['username']}:{accounts[loc]['pat']}@{origin}']
     logging.info(f"SETTING ACCOUNT {accounts[loc]['username']}")
     subprocess.run(cmd)
