@@ -31,11 +31,12 @@ def register_accounts(accounts: list, admin: bool = True ):
     subprocess.run(primary_login_cmd)
     
     #Traverse through secondary accounts and invite secoondry users to project
+    #TODO: Randomize original owner boolean
     for account in register_list:
         logging.info(f"-----Registering {account['username']}")
 
         #Invite cmd
-        cmd = ['gh', 'api', '--method', 'PUT', '-H', 'Accept: application/vnd.github+json', f'/repos/1guenette/gitmixer/collaborators/{account['username']}', '-f' 'permission=admin']
+        cmd = ['gh', 'api', '--method', 'PUT', '-H', 'Accept: application/vnd.github+json', f'/repos/1guenette/gitmixer/collaborators/{account['username']}', '-f' 'permission=admin'] ##TODO: set project
         try:
             subprocess.run(cmd, text=True, capture_output=False)
         except Exception as e:

@@ -66,9 +66,6 @@ def process(cmd_list:list[str]):
         subprocess.run(['git', 'config', '--global', 'user.name', '"' + os.environ.get('OG_USERNAME') + '"' ])
         subprocess.run(['git', 'config', '--global', 'user.email', '"' + os.environ.get('OG_EMAIL') + '"'])
         subprocess.run(["git"] + cmd_list)
-    elif git_cmd == 'init':
-        #TODO
-        print("INITIALIZING GIX in progress (Use git init cmd)")
         
     else:
         subprocess.run(["git"] + cmd_list)
